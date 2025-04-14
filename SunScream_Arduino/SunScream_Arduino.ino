@@ -2,8 +2,7 @@
 #define UV A1
 #define vstep 5.0/1023.0
 #define calib 10
-int in;
-float Vo;
+#define alarm 9
 float index;
 float sum;
 
@@ -23,22 +22,27 @@ void loop() {
   index = sum/100;
 
   if (index <= 2) {
-    
+    Serial.println("Most people are safe, you pastey mfs Put on 15+ SPF");
   }
   else if (index <= 5) {
-
+    alarmLoop();
   }
   else if (index <= 7) {
-
+    alarmLoop();
   }
   else if (index <= 10) {
-
+    alarmLoop();
   }
   else if (index <= 15) {
-
+    alarmLoop();
   }
   else {
-    Serial.println("Either something broke or you about to become roasted human");
+    Serial.println("Either something broke or you're about to become roasted human");
   }
 }
 
+void alarmLoop() {
+  while (true) {
+    digitalWrite(alarm,HIGH);
+  }
+}
