@@ -1,48 +1,52 @@
 //SunScream
-#define UV A1
-#define vstep 5.0/1023.0
-#define calib 10
-#define alarm 9
-float index;
-float sum;
+#include "BluetoothSerial.h"
+
+#define UV 34 //GUVA-SD12SD
+#define vstep 3.3/4095.0 //Vstep for ESP ADC
+#define pConv 0.76 //must power with 5V??
+#define alarm 33 //Active Buzzer Pin
+#define limit 30 // maybe 3000?
+#define tStep 1000 // time step in ms
+
+float energy;
+float power;
+float val;
+float acc = 0.0; // accumulation of UV-A power
+
+BluetoothSerial SerialBT; // Create BT class
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(115200);
-  pinMode(UV,INPUT);
+  Serial.begin(115200); // Start serial com 115200 Baud
+  SerialBT.begin("SunScream");  // Set Bluetooth device name
+  Serial.println("Bluetooth started. Ready to pair.");
+  pinMode(UV,INPUT); // Set UV pin to input
+  pinMode(alarm,OUTPUT); //Set buzzer pin to output
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  sum = 0.0;
-  for (int i = 0; i < 100; i++) {
-        sum = sum + (analogRead(UV)*vstep*calib);
-        delay(10);
-  }
-  index = sum/100;
+  val = analogRead(UV);
+  power = (val * vstep) / pConv; // in mW/cm^2
+  energy = power * (tStep / 1000); // in mJ/cm^2 -- time step /1000 to convert to seconds
+  acc = acc + energy; // multiplied by the time between each measuremnt 1 second
 
-  if (index <= 2) {
-    Serial.println("Most people are safe, you pastey mfs Put on 15+ SPF");
-  }
-  else if (index <= 5) {
-    alarmLoop();
-  }
-  else if (index <= 7) {
-    alarmLoop();
-  }
-  else if (index <= 10) {
-    alarmLoop();
-  }
-  else if (index <= 15) {
-    alarmLoop();
-  }
-  else {
-    Serial.println("Either something broke or you're about to become roasted human");
-  }
-}
+  SerialBT.print(val,5);
+  SerialBT.print(" , ");
+  SerialBT.print(energy,5);
+  SerialBT.print(" , ");
+  SerialBT.println(acc,5);
 
-void alarmLoop() {
-  while (true) {
+  while (acc > limit) {
     digitalWrite(alarm,HIGH);
+    delay(500);
+    digitalWrite(alarm,LOW);
+    delay(500);
+    SerialBT.println("Limit Exceded");
   }
+
+  delay(tStep);
 }
+
+
+
