@@ -31,7 +31,7 @@ void loop() {
   energy = power * (tStep / 1000); // in mJ/cm^2 -- time step /1000 to convert to seconds
   acc = acc + energy; // multiplied by the time between each measuremnt 1 second
 
-  SerialBT.print(val,5);
+  SerialBT.print(val);
   SerialBT.print(" , ");
   SerialBT.print(energy,5);
   SerialBT.print(" , ");
