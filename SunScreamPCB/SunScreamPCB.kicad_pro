@@ -396,7 +396,7 @@
     },
     "net_format_name": "",
     "page_layout_descr_file": "",
-    "plot_directory": "",
+    "plot_directory": "C:/Users/jagdr/OneDrive - University of South Florida/Spring 2025/BME 4056C Lab 1/Group Data/Project/",
     "space_save_all_events": true,
     "spice_current_sheet_as_root": false,
     "spice_external_command": "spice \"%I\"",
