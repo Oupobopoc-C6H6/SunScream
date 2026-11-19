@@ -1,0 +1,33 @@
+
+# KiCad local preferences and backups
+*.kicad_prl
+*-backups/
+*-bak
+*.kicad_sch-bak
+*.kicad_pcb-bak
+
+# KiCad temporary files
+*-cache.lib
+*.lck
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Python packaging
+build/
+dist/
+*.spec
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# SolidWorks temporary and backup files
+~$*
+*.SLDPRT.bak
+*.SLDASM.bak
+*.SLDDRW.bak

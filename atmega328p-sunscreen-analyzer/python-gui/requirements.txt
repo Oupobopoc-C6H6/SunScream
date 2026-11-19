@@ -1,0 +1,2 @@
+# Serial communication with the ATmega328P-based controller
+pyserial>=3.5,<4

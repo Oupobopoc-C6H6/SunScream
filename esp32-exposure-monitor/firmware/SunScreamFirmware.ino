@@ -5,7 +5,7 @@
 #define vstep 3.3/4095.0 //Vstep for ESP ADC
 #define pConv 0.0025 //mW/cm^2
 #define alarm 33 //Active Buzzer Pin
-#define limit 30.0 // maybe 3000?
+#define limit 30.0 
 #define tStep 1000 // time step in ms
 
 float val;
