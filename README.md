@@ -57,4 +57,4 @@ SunScream is an educational engineering prototype, **not a calibrated UV dosimet
 
 ## Attribution
 
-The ESP32 work and its technical report were completed by **J. A. Groom, A. T. Carr, and C. C. Harmon**. See the [report](esp32-exposure-monitor/docs/SunScream.pdf) for the team members' individual contributions. The ATmega328P implementation was developed separately for embedded systems coursework.
+The ESP32 work and its technical report were completed by **J. A. Groom, A. T. Carr, and C. C. Harmon**. See the [report](esp32-exposure-monitor/docs/SunScream.pdf) for the team members' individual contributions. The ATmega328P implementation was developed separately for embedded systems coursework with Sophia Alonso and Audrey Gabbard.
